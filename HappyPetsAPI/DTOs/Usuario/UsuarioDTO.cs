@@ -8,6 +8,8 @@ namespace HappyPetsAPI.DTOs.Usuario
 
         public string NombreUsuario { get; set; } = null!;
 
+        public string Correo { get; set; } = null!;
+
         public string Password { get; set; } = null!;
 
         public string TipoDocumento { get; set; } = null!;
@@ -16,8 +18,8 @@ namespace HappyPetsAPI.DTOs.Usuario
 
         public string Direccion { get; set; } = null!;
 
-        public int Rol { get; set; }
+        public string Rol { get; set; } = null!;
 
-        public BitArray Estado { get; set; } = null!;
+        public bool Estado { get; set; }
     }
 }

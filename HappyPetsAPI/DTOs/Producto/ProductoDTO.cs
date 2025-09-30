@@ -8,12 +8,20 @@ namespace HappyPetsAPI.DTOs.Producto
 
         public string NombreProducto { get; set; } = null!;
 
-        public int CategoriaProducto { get; set; }
+        public string CategoriaProducto { get; set; }
 
         public decimal PrecioUnidad { get; set; }
 
         public int Stock { get; set; }
 
-        public BitArray? Estado { get; set; }
+        public bool Estado { get; set; }
+
+        public List<ImagenDTO> Imagenes { get; set; } = new List<ImagenDTO>();
+    }
+
+    public class ImagenDTO
+    {
+        public int IdImagen { get; set; }
+        public string Url { get; set; } = null!;
     }
 }

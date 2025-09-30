@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace HappyPetsAPI.Models;
@@ -16,7 +15,7 @@ public partial class Producto
 
     public int Stock { get; set; }
 
-    public BitArray? Estado { get; set; }
+    public bool Estado { get; set; }
 
     public virtual Categoria CategoriaProductoNavigation { get; set; } = null!;
 
