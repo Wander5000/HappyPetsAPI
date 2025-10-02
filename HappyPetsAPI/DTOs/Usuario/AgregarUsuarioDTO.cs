@@ -6,6 +6,8 @@ namespace HappyPetsAPI.DTOs.Usuario
     {
         public string NombreUsuario { get; set; } = null!;
 
+        public string Correo { get; set; } = null!;
+
         public string Password { get; set; } = null!;
 
         public string TipoDocumento { get; set; } = null!;
@@ -16,6 +18,6 @@ namespace HappyPetsAPI.DTOs.Usuario
 
         public int Rol { get; set; }
 
-        public BitArray Estado { get; set; } = null!;
+        public bool Estado { get; set; }
     }
 }

@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using HappyPetsAPI.Context;
+using HappyPetsAPI.Models;
 using HappyPetsAPI.DTOs.Estado;
 
 namespace HappyPetsAPI.Controllers
@@ -24,6 +25,18 @@ namespace HappyPetsAPI.Controllers
                     IdEstado = e.IdEstado,
                     NombreEstado = e.NombreEstado,
                 }).ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AccionesEstadoDTO>> CrearCategoria(AccionesEstadoDTO dto)
+        {
+            var estado = new Estado
+            {
+                NombreEstado = dto.NombreEstado,
+            };
+            _context.Estados.Add(estado);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(ListarEstados), new { id = estado.IdEstado }, dto);
         }
     }
 }

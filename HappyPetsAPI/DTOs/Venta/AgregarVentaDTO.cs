@@ -13,6 +13,8 @@
         public string? Observaciones { get; set; }
 
         public int Estado { get; set; }
+
+        public List<AgregarDetalleDTO> Detalles { get; set; } = new List<AgregarDetalleDTO>();
     }
 
     public class AgregarDetalleDTO

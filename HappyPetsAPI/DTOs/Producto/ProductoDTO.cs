@@ -8,7 +8,7 @@ namespace HappyPetsAPI.DTOs.Producto
 
         public string NombreProducto { get; set; } = null!;
 
-        public string CategoriaProducto { get; set; }
+        public string CategoriaProducto { get; set; } = null!;
 
         public decimal PrecioUnidad { get; set; }
 

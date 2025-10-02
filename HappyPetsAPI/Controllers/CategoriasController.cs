@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HappyPetsAPI.Context;
+using HappyPetsAPI.Models;
 using HappyPetsAPI.DTOs.Categoria;
 
 namespace HappyPetsAPI.Controllers
@@ -28,6 +29,19 @@ namespace HappyPetsAPI.Controllers
                     Descripcion = c.Descripcion
                 })
                 .ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AccionesCategoriaDTO>> CrearCategoria(AccionesCategoriaDTO dto)
+        {
+            var categoria = new Categoria
+            {
+                NombreCategoria = dto.NombreCategoria,
+                Descripcion = dto.Descripcion
+            };
+            _context.Categorias.Add(categoria);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(ListarCategorias),new { id = categoria.IdCategoria}, dto);
         }
     }
 }

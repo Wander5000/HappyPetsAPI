@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HappyPetsAPI.Context;
+using HappyPetsAPI.Models;
 using HappyPetsAPI.DTOs.Rol;
 
 namespace HappyPetsAPI.Controllers
@@ -26,6 +27,18 @@ namespace HappyPetsAPI.Controllers
                     IdRol = r.IdRol,
                     NombreRol = r.NombreRol,
                 }).ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AccionesRolDTO>> CrearRol(AccionesRolDTO dto)
+        {
+            var rol = new Rol
+            {
+                NombreRol = dto.NombreRol,
+            };
+            _context.Roles.Add(rol);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(ListarRoles), new { id = rol.IdRol }, dto);
         }
     }
 }

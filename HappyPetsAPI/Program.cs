@@ -5,6 +5,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontEnd",
+        policy => policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 builder.Services.AddDbContext<HappyPetsDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("database")));
 

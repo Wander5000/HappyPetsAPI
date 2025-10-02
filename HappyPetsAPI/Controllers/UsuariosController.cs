@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HappyPetsAPI.Context;
+using HappyPetsAPI.Models;
 using HappyPetsAPI.DTOs.Usuario;
 
 namespace HappyPetsAPI.Controllers
@@ -32,6 +33,25 @@ namespace HappyPetsAPI.Controllers
                     Rol = u.RolNavigation.NombreRol,
                     Estado = u.Estado
                 }).ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AgregarUsuarioDTO>> AgregarUsuario(AgregarUsuarioDTO dto)
+        {
+            var usuario = new Usuario
+            {
+                NombreUsuario = dto.NombreUsuario,
+                Correo = dto.Correo,
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                TipoDocumento = dto.TipoDocumento,
+                NumeroDocumento = dto.NumeroDocumento,
+                Direccion = dto.Direccion,
+                Rol = dto.Rol,
+                Estado = dto.Estado
+            };
+            _context.Usuarios.Add(usuario);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(ListarUsuarios), new { id = usuario.IdUsuario }, dto);
         }
     }
 }

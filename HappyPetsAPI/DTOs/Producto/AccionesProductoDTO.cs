@@ -12,7 +12,7 @@ namespace HappyPetsAPI.DTOs.Producto
 
         public int Stock { get; set; }
 
-        public BitArray? Estado { get; set; }
+        public bool Estado { get; set; }
 
         public List<AccionesImagenDTO> Imagenes { get; set; } = new List<AccionesImagenDTO>();
     }
