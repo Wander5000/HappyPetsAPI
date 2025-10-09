@@ -1,0 +1,11 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace HappyPetsAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PedidosController : ControllerBase
+    {
+    }
+}
